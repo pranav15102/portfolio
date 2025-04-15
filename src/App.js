@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Button = ({ children, className = "", ...props }) => (
   <button
@@ -10,12 +10,7 @@ const Button = ({ children, className = "", ...props }) => (
 );
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-  }, [darkMode]);
 
   const sections = [
     { label: "Home", href: "#home" },
@@ -26,19 +21,8 @@ export default function App() {
   ];
 
   return (
-    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
-      <div className="bg-white text-neutral-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-
-        {/* Dark Mode Toggle */}
-        <div className="absolute top-4 right-4">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-xl shadow hover:scale-105 transition"
-          >
-            {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
-          </button>
-        </div>
-
+    <div className="min-h-screen bg-white text-neutral-800">
+      <div className="transition-colors duration-300">
         {/* Home Section */}
         <section
           id="home"
@@ -69,17 +53,17 @@ export default function App() {
           </div>
         </section>
 
+
         {/* About Me Section */}
       {/* About Me Section */}
-{/* About Me */}
 {/* About Me Section */}
 <section
   id="about"
   className="p-10 border-t border-gray-200"
   style={{
     backgroundImage: `
-      linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(245,245,255,0.95)),
-      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 0L50 15L75 0L100 15V45L75 60L100 75V105L75 90L50 105L25 90L0 105V75L25 60L0 45V15L25 0Z' stroke='%23dbeafe' stroke-width='0.5'/%3E%3C/svg%3E")
+      linear-gradient(to bottom, rgba(219, 234, 254, 0.85), rgba(255, 255, 255, 0.95)),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 0L50 15L75 0L100 15V45L75 60L100 75V105L75 90L50 105L25 90L0 105V75L25 60L0 45V15L25 0Z' stroke='%2399caff' stroke-width='0.8'/%3E%3C/svg%3E")
     `,
     backgroundRepeat: "repeat",
     backgroundSize: "contain",
@@ -97,7 +81,7 @@ export default function App() {
         alt="Pranav Rajesh"
         className="w-64 h-64 object-cover rounded-xl shadow-lg border-4 border-blue-100 hover:scale-105 transition-transform duration-300"
       />
-      <p className="text-lg text-gray-700 leading-relaxed text-justify max-w-2xl">
+      <p className="text-lg text-gray-800 leading-relaxed text-justify max-w-2xl">
         I’m a multidisciplinary engineer passionate about building intelligent robotic systems that integrate
         mechanical design, AI-driven software, and real-time control. With a strong foundation in robotics,
         automation, and prototyping, I specialize in bridging hardware and software to solve real-world challenges.
@@ -122,11 +106,14 @@ export default function App() {
             logo: "https://tse4.mm.bing.net/th?id=OIP.IKx0_IosGEaxbw7dD7kkYgHaH0&pid=Api",
           },
         ].map(({ school, degree, location, logo }) => (
-          <div key={school} className="bg-white border border-gray-300 p-4 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex gap-4 items-start">
+          <div
+            key={school}
+            className="bg-white border border-gray-300 p-4 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex gap-4 items-start"
+          >
             <img src={logo} alt={`${school} logo`} className="w-12 h-12 object-contain" />
             <div>
-              <p className="font-bold text-base">{degree}</p>
-              <p className="text-gray-600 text-sm">{school} • {location}</p>
+              <p className="font-bold text-base text-gray-900">{degree}</p>
+              <p className="text-gray-700 text-sm">{school} • {location}</p>
             </div>
           </div>
         ))}
@@ -159,11 +146,17 @@ export default function App() {
             skills: ["CNC Machining", "Welding", "3D Printing", "Injection Molding", "Hand/Machine Tools"],
           },
         ].map(({ title, color, skills }) => (
-          <div key={title} className="bg-white border border-gray-300 p-4 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300">
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">{title}</h4>
+          <div
+            key={title}
+            className="bg-white border border-gray-300 p-4 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300"
+          >
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">{title}</h4>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
-                <span key={skill} className={`${color} px-3 py-1 rounded-full text-sm font-medium`}>
+                <span
+                  key={skill}
+                  className={`${color} px-3 py-1 rounded-full text-sm font-medium`}
+                >
                   {skill}
                 </span>
               ))}
@@ -179,8 +172,10 @@ export default function App() {
       <div className="grid grid-cols-1 gap-6">
         <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div>
-            <p className="font-bold text-lg mb-1">Graduate Research Assistant – Battery Electric & Intelligent Vehicle (BELIV) Laboratory</p>
-            <p className="text-sm text-gray-600 mb-4">Arizona State University • Tempe, AZ • Jan 2023 – Jul 2023</p>
+            <p className="font-bold text-lg text-gray-900 mb-1">
+              Graduate Research Assistant – Battery Electric & Intelligent Vehicle (BELIV) Laboratory
+            </p>
+            <p className="text-sm text-gray-700 mb-4">Arizona State University • Tempe, AZ • Jan 2023 – Jul 2023</p>
             <ul className="list-disc list-inside space-y-2 text-sm text-gray-800 text-justify">
               <li>Developed a digital twin of the lab’s AV in SolidWorks, with simulation testing</li>
               <li>Prototyped 3D-printed camera holders using SolidWorks and Ansys</li>
@@ -190,17 +185,14 @@ export default function App() {
             </ul>
           </div>
           <div className="flex justify-center">
-            <img
-              src={`${process.env.PUBLIC_URL}/beliv.jpg`}
-              alt="BELIV Lab Logo"
-              className="max-h-28 object-contain"
-            />
+            <img src={`${process.env.PUBLIC_URL}/beliv.jpg`} alt="BELIV Lab" className="max-h-28 object-contain" />
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 
         {/* Mechanical Design Projects */}
@@ -227,8 +219,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">📷 3D Printed Stereo Camera Mount</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">📷 3D Printed Stereo Camera Mount</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>🛠️ Designed mount for Raspberry Pi & stereo cameras in SolidWorks</li>
             <li>🧪 Performed FEA in SolidWorks using PLA material</li>
             <li>📏 Max Displacement: 0.0146 mm — highly stable design</li>
@@ -257,8 +249,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🔧 Generative Design & FEA of 3D-Printed Connecting Rod</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🔧 Generative Design & FEA of 3D-Printed Connecting Rod</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>⚙️ Designed connecting rod in Fusion 360 for 150cc engine</li>
             <li>📐 Used generative design to minimize weight and optimize structure</li>
             <li>🧪 Ran FEA simulations in ANSYS for tensile/compressive forces</li>
@@ -284,15 +276,15 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🚀 Zirconia-Based Hypersonic Nose Cone</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🚀 Zirconia-Based Hypersonic Nose Cone</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>📐 Modeled a parabolic hypersonic nose cone in SolidWorks</li>
             <li>📉 Performed modal and harmonic response analysis for zirconia, mullite, and Ti-6Al-4V alloy in Ansys</li>
             <li>📊 Demonstrated zirconia as a viable alternative to HRSI ceramics in hypersonic systems</li>
             <li>📄 Published in Springer Lecture Notes in Mechanical Engineering (2023)</li>
           </ul>
         </div>
-        <a href="https://link.springer.com/chapter/10.1007/978-981-99-6120-2_23" target="_blank" rel="noopener noreferrer">
+        <a href="https://link.springer.com/chapter/10.1007/978-981-19-7709-1_28" target="_blank" rel="noopener noreferrer">
           <Button className="w-full mt-4">View Published Paper</Button>
         </a>
       </div>
@@ -309,8 +301,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🤖 Autonomous Mobile Robot (AMR) Base Chassis</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🤖 Autonomous Mobile Robot (AMR) Base Chassis</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>🧩 Designed modular AMR chassis with smooth transitions for indoor maneuverability</li>
             <li>📦 Integrated slots for sensors, compute, and battery in a compact layout</li>
             <li>🛞 Added differential drive and omnidirectional caster wheel for agile mobility</li>
@@ -335,8 +327,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🦾 6-DOF Robotic Arm for Pick-and-Place</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🦾 6-DOF Robotic Arm for Pick-and-Place</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>🛠️ Designed a 6-DOF robotic manipulator in SolidWorks for industrial automation</li>
             <li>📐 Modeled revolute joints with realistic DOF and workspace constraints</li>
             <li>🔩 Shoulder, elbow, and wrist articulation for full reachability</li>
@@ -359,8 +351,10 @@ export default function App() {
   </div>
 </section>
 
+
         {/* Robotics Projects */}
         {/* Paste your full Robotics Projects section here — already confirmed and corrected with YouTube embeds */}
+{/* Robotics Projects */}
 {/* Robotics Projects */}
 <section
   id="robotics-projects"
@@ -383,8 +377,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🅿️ Intelligent Parking Guidance System</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🅿️ Intelligent Parking Guidance System</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>🧠 Real-time YOLOv5-based vehicle detection + computer vision</li>
             <li>🎥 Single monocular camera with &gt;93% accuracy in occupancy detection</li>
             <li>🌐 Cloud streaming via React + MongoDB + AWS Lambda</li>
@@ -411,8 +405,8 @@ export default function App() {
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 flex flex-col md:flex-row gap-6">
       <div className="md:w-1/2 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold mb-3">🛸 Vision-Based Line Follower Drone</h3>
-          <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+          <h3 className="text-xl font-bold mb-3 text-gray-900">🛸 Vision-Based Line Follower Drone</h3>
+          <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
             <li>🎥 Python + OpenCV-based quadcopter navigation</li>
             <li>🧠 PID control algorithm in Simulink for stable flight</li>
             <li>📐 Real-time line detection + path tracking</li>
@@ -436,8 +430,8 @@ export default function App() {
 
     {/* ROSMaster-X3 AMR */}
     <div className="bg-white border border-gray-300 p-6 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-300 space-y-6">
-      <h3 className="text-xl font-bold mb-3">🤖 ROSMaster-X3 Based Autonomous Mobile Robot</h3>
-      <ul className="list-disc pl-5 space-y-2 text-base text-gray-700 text-justify">
+      <h3 className="text-xl font-bold mb-3 text-gray-900">🤖 ROSMaster-X3 Based Autonomous Mobile Robot</h3>
+      <ul className="list-disc pl-5 space-y-2 text-base text-gray-800 text-justify">
         <li>🧠 Programmed AMR using ROS2 with LiDAR-based SLAM (gmapping), trajectory planning, and A*/RRT algorithms</li>
         <li>🎯 Implemented single and multi-point goal navigation with real-time path planning</li>
         <li>📡 Integrated RGB-D camera, LiDAR, and IMU for accurate object detection and obstacle avoidance</li>
@@ -478,67 +472,91 @@ export default function App() {
   </div>
 </section>
 
-        {/* Contact Me Section */}
-        <section
-          id="contact"
-          className="p-10 border-t border-gray-200"
-          style={{
-            backgroundImage: `
-              linear-gradient(to bottom, rgba(219, 234, 254, 0.85), rgba(255, 255, 255, 0.95)),
-              url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 0L50 15L75 0L100 15V45L75 60L100 75V105L75 90L50 105L25 90L0 105V75L25 60L0 45V15L25 0Z' stroke='%2399caff' stroke-width='0.8'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "repeat",
-            backgroundSize: "contain",
-          }}
-        >
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl font-bold text-blue-900 border-b-4 border-blue-500 pb-2">
-              Contact Me
-            </h2>
-            <div className="space-y-2 text-base text-gray-700">
-              <p>📧 <span className="text-blue-700 font-medium">pranav.rajesh@hotmail.com</span></p>
-              <p>📞 <span className="text-blue-700 font-medium">+1 (602) 756-8293</span></p>
-              <p>
-                <a href="https://linkedin.com/in/pranavrajesh" className="underline text-blue-600 mr-4" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://github.com/pranav15102" className="underline text-blue-600" target="_blank" rel="noopener noreferrer">GitHub</a>
-              </p>
-            </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.target;
-                const data = new FormData(form);
+{/* Contact Section */}
+<section
+  id="contact"
+  className="p-10 border-t border-gray-200"
+  style={{
+    backgroundImage: `
+      linear-gradient(to bottom, rgba(219, 234, 254, 0.85), rgba(255, 255, 255, 0.95)),
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 0L50 15L75 0L100 15V45L75 60L100 75V105L75 90L50 105L25 90L0 105V75L25 60L0 45V15L25 0Z' stroke='%2399caff' stroke-width='0.8'/%3E%3C/svg%3E")
+    `,
+    backgroundRepeat: "repeat",
+    backgroundSize: "contain",
+  }}
+>
+  <div className="max-w-3xl mx-auto text-center space-y-8">
+    <h2 className="text-4xl font-bold text-blue-900 border-b-4 border-blue-500 pb-2">
+      Contact Me
+    </h2>
+    <div className="space-y-2 text-base text-gray-700">
+      <p>📧 <span className="text-blue-700 font-medium">pranav.rajesh@hotmail.com</span></p>
+      <p>📞 <span className="text-blue-700 font-medium">+1 (602) 756-8293</span></p>
+      <p>
+        <a href="https://linkedin.com/in/pranavrajesh" className="underline text-blue-600 mr-4" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/pranav15102" className="underline text-blue-600" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
 
-                fetch("https://formspree.io/f/xblgblkk", {
-                  method: "POST",
-                  body: data,
-                  headers: { Accept: "application/json" },
-                })
-                  .then((response) => {
-                    if (response.ok) {
-                      setSubmitted(true);
-                      form.reset();
-                    }
-                  })
-                  .catch((error) => {
-                    alert("Something went wrong. Please try again.");
-                    console.error(error);
-                  });
-              }}
-              className="space-y-4 text-left max-w-md mx-auto"
-            >
-              {!submitted ? (
-                <>
-                  <input type="text" name="name" placeholder="Your Name" required className="w-full border rounded px-3 py-2 shadow-sm" />
-                  <input type="email" name="email" placeholder="Your Email" required className="w-full border rounded px-3 py-2 shadow-sm" />
-                  <textarea name="message" placeholder="Your Message" required className="w-full border rounded px-3 py-2 h-24 shadow-sm"></textarea>
-                  <Button type="submit" className="w-full">Send Message</Button>
-                </>
-              ) : (
-                <p className="text-green-600 text-center font-semibold">✅ Thank you! Your message has been sent.</p>
-              )}
-            </form>
-          </div>
-        </section>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+
+        fetch("https://formspree.io/f/xblgblkk", {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              setSubmitted(true);
+              form.reset();
+            }
+          })
+          .catch((error) => {
+            alert("Something went wrong. Please try again.");
+            console.error(error);
+          });
+      }}
+      className="space-y-4 text-left max-w-md mx-auto"
+    >
+      {!submitted ? (
+        <>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+            className="w-full border rounded px-3 py-2 shadow-sm"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+            className="w-full border rounded px-3 py-2 shadow-sm"
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+            className="w-full border rounded px-3 py-2 h-24 shadow-sm"
+          ></textarea>
+          <button type="submit" className="w-full px-4 py-2 rounded-xl font-semibold shadow hover:opacity-90 transition bg-blue-600 text-white">
+            Send Message
+          </button>
+        </>
+      ) : (
+        <p className="text-green-600 text-center font-semibold">
+          ✅ Thank you! Your message has been sent.
+        </p>
+      )}
+    </form>
+  </div>
+</section>
+
       </div>
     </div>
   );
